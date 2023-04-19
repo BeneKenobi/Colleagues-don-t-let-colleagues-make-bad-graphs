@@ -1,0 +1,22 @@
+project:
+  title: "Colleagues Don’t Let Colleagues Make Bad Graphs"
+
+author:
+  - name: Benedikt Schnur
+    orcid: 0000-0002-1977-7878
+institute: "Hannover Medical School (MHH), Department of Human Genetics"
+
+image: "preview.png"
+
+format: 
+  revealjs:
+    theme: [default, ./custom.scss]
+    menu: false
+    slide-number: True
+
+resources:
+  - "fonts/*.ttf"
+  - "*.png"
+
+open-graph: true
+twitter-card: true
