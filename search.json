@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html#colleagues-dont-let-colleagues-make-pie-charts",
+    "href": "index.html#colleagues-dont-let-colleagues-make-pie-charts",
+    "title": "Colleagues Don’t Let Colleagues Make Bad Graphs",
+    "section": "Colleagues Don’t Let Colleagues Make Pie Charts",
+    "text": "Colleagues Don’t Let Colleagues Make Pie Charts\n\n\nCode\ndata1 &lt;- data.frame( name=letters[1:5], value=c(17,18,20,22,24) )\ndata2 &lt;- data.frame( name=letters[1:5], value=c(20,18,21,20,20) )\ndata3 &lt;- data.frame( name=letters[1:5], value=c(24,23,21,19,18) )\n\nplot_pie &lt;- function(data){\n\nggplot(data, aes(x=\"name\", y=value, fill=name)) +\n  geom_bar(width = 1, stat = \"identity\") +\n  coord_polar(\"y\", start=0, direction = -1) +\n  bene_palette +\n  geom_text(aes(label = name), position = position_stack(vjust = 0.5), color=\"white\") +\n  theme_minimal() +\n  theme(\n    legend.position=\"none\",\n    plot.title = element_text(size=14),\n    panel.grid = element_blank(),\n    axis.text = element_blank(),\n    legend.margin=unit(0, \"null\")\n  ) +\n  xlab(\"\") +\n  ylab(\"\")\n  \n}\n\na &lt;- plot_pie(data1)\nb &lt;- plot_pie(data2)\nc &lt;- plot_pie(data3)\na + b + c\n\n\n\nFigure 1: Pie Charts"
+  },
+  {
+    "objectID": "index.html#colleagues-dont-let-colleagues-make-pie-charts-1",
+    "href": "index.html#colleagues-dont-let-colleagues-make-pie-charts-1",
+    "title": "Colleagues Don’t Let Colleagues Make Bad Graphs",
+    "section": "Colleagues Don’t Let Colleagues Make Pie Charts",
+    "text": "Colleagues Don’t Let Colleagues Make Pie Charts\n\n\nCode\n# reuses plots of fig-pies\n\nplot_bar &lt;- function(data){\n  ggplot(data, aes(x=name, y=value, fill=name)) +\n    geom_bar( stat = \"identity\") +\n    bene_palette +\n    theme_minimal() +\n    theme(\n      legend.position=\"none\",\n      panel.grid = element_blank(),\n    ) +\n    ylim(0,25) +\n    xlab(\"\") +\n    ylab(\"\")\n}\n\nd &lt;- plot_bar(data1)\ne &lt;- plot_bar(data2)\nf &lt;- plot_bar(data3)\n\nlayout &lt;- \"\nABC\nABC\nDEF\nDEF\nDEF\nDEF\nDEF\n\"\n\na + b + c + d + e + f + plot_layout(design = layout)\n\n\n\nFigure 2: Pie Charts vs. Bar Charts"
+  },
+  {
+    "objectID": "index.html#colleagues-dont-let-colleagues-make-pie-charts-2",
+    "href": "index.html#colleagues-dont-let-colleagues-make-pie-charts-2",
+    "title": "Colleagues Don’t Let Colleagues Make Bad Graphs",
+    "section": "Colleagues Don’t Let Colleagues Make Pie Charts",
+    "text": "Colleagues Don’t Let Colleagues Make Pie Charts\n\n\nCode\n# reuses plots of fig-pies\n\n# add source column to each data frame\ndata1 &lt;- data1 %&gt;%\n  add_column(type = \"I\")\ndata2 &lt;- data2 %&gt;%\n  add_column(type = \"II\")\ndata3 &lt;- data3 %&gt;%\n  add_column(type = \"III\")\n\n# combine data frames into a single data frame\ndata_combined &lt;- rbind(data1, data2, data3)\n\ng &lt;- ggplot(data_combined, aes(x=rev(type), y=value, fill=name)) +\n    geom_bar(position=position_fill(reverse=TRUE), stat = \"identity\", width = 0.25) +\n    bene_palette +\n    theme_minimal() +\n    theme(\n      legend.position=\"none\",\n      panel.grid = element_blank(),\n      axis.text.x=element_blank(),\n      axis.text.y=element_blank(),\n      axis.ticks.y=element_blank()\n    ) +\n    scale_x_discrete(expand = c(0, 0.4)) +\n    geom_text(aes(label = name), position = position_fill(vjust = 0.5, reverse=TRUE), color=\"white\") +\n    xlab(\"\") +\n    ylab(\"\") +\n    coord_flip()\n\nlayout &lt;- \"\nAD\nBD\nCD\n\"\n\na + b + c + g + plot_layout(design = layout)\n\n\n\n\nFigure 3: Pie Charts vs. Bar Charts (stacked)"
+  }
+]
