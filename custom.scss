@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Atkinson Hyperlegible";
+    src:url("https://benekenobi.github.io/Colleagues-don-t-let-colleagues-make-bad-graphs/fonts/Atkinson-Hyperlegible-Regular-102.ttf");
+}
+@font-face {
+    font-family: "Source Code Pro" ;
+    src:url("https://benekenobi.github.io/Colleagues-don-t-let-colleagues-make-bad-graphs/fonts/SourceCodePro-VariableFont_wght.ttf");
+}
+
+/*-- scss:defaults --*/
+$primary: #47476B;
+$secondary: #005968;
+$body-color: #000;
+$link-color: $body-color;
+$presentation-heading-font: "Atkinson Hyperlegible", sans-serif;
+$font-family-sans-serif: "Atkinson Hyperlegible", sans-serif;
+$font-family-monospace: "Source Code Pro", monospace;
+
+.reveal .footer {
+    font-size: .35em !important;
+}
+.reveal .slide-number {
+    font-size: .35em !important;
+}
+
+.aside-footnotes {
+    font-size: .5em !important;
+}
+
+.reveal .slide figure>figcaption {
+    font-size: .5em !important;
+}
+
+.reveal .progress {
+    color: $primary !important;
+}
+
+.quarto-figure {
+    margin-bottom: 0.1em !important;
+}
+
+.orcid {
+    height: 0.75em;
+    vertical-align: top;
+}
+
+div.cell > details > summary{
+    font-size: 0.5em;
+}
+
+div.cell > details {
+    margin-bottom: 0em;
+}

@@ -1,0 +1,153 @@
+---
+title: "Colleagues Don’t Let Colleagues Make Bad Graphs"
+---
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
+
+```{r}
+# Libraries
+library(ggplot2)
+library(tidyverse)
+library(viridis)
+library(patchwork)
+
+bene_colors <- c(
+    "#47476b",
+    "#cda715",
+    "#318986",
+    "#93003a",
+    "#3081ad",
+    "#6d3d3d",
+    "#79779f",
+    "#00c1bf",
+    "#777586"
+)
+bene_palette = scale_fill_manual(values = bene_colors, breaks = waiver())
+```
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-pies
+#| fig-cap: "Pie Charts"
+#| warning: false
+
+data1 <- data.frame( name=letters[1:5], value=c(17,18,20,22,24) )
+data2 <- data.frame( name=letters[1:5], value=c(20,18,21,20,20) )
+data3 <- data.frame( name=letters[1:5], value=c(24,23,21,19,18) )
+
+plot_pie <- function(data){
+
+ggplot(data, aes(x="name", y=value, fill=name)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y", start=0, direction = -1) +
+  bene_palette +
+  geom_text(aes(label = name), position = position_stack(vjust = 0.5), color="white") +
+  theme_minimal() +
+  theme(
+    legend.position="none",
+    plot.title = element_text(size=14),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    legend.margin=unit(0, "null")
+  ) +
+  xlab("") +
+  ylab("")
+  
+}
+
+a <- plot_pie(data1)
+b <- plot_pie(data2)
+c <- plot_pie(data3)
+a + b + c
+```
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-pievsbar
+#| fig-cap: "Pie Charts vs. Bar Charts"
+#| warning: false
+
+# reuses plots of fig-pies
+
+plot_bar <- function(data){
+  ggplot(data, aes(x=name, y=value, fill=name)) +
+    geom_bar( stat = "identity") +
+    bene_palette +
+    theme_minimal() +
+    theme(
+      legend.position="none",
+      panel.grid = element_blank(),
+    ) +
+    ylim(0,25) +
+    xlab("") +
+    ylab("")
+}
+
+d <- plot_bar(data1)
+e <- plot_bar(data2)
+f <- plot_bar(data3)
+
+layout <- "
+ABC
+ABC
+DEF
+DEF
+DEF
+DEF
+DEF
+"
+
+a + b + c + d + e + f + plot_layout(design = layout)
+```
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-pievsstackbar
+#| fig-cap: "Pie Charts vs. Bar Charts (stacked)"
+#| warning: false
+
+# reuses plots of fig-pies
+
+# add source column to each data frame
+data1 <- data1 %>%
+  add_column(type = "I")
+data2 <- data2 %>%
+  add_column(type = "II")
+data3 <- data3 %>%
+  add_column(type = "III")
+
+# combine data frames into a single data frame
+data_combined <- rbind(data1, data2, data3)
+
+g <- ggplot(data_combined, aes(x=rev(type), y=value, fill=name)) +
+    geom_bar(position=position_fill(reverse=TRUE), stat = "identity", width = 0.25) +
+    bene_palette +
+    theme_minimal() +
+    theme(
+      legend.position="none",
+      panel.grid = element_blank(),
+      axis.text.x=element_blank(),
+      axis.text.y=element_blank(),
+      axis.ticks.y=element_blank()
+    ) +
+    scale_x_discrete(expand = c(0, 0.4)) +
+    geom_text(aes(label = name), position = position_fill(vjust = 0.5, reverse=TRUE), color="white") +
+    xlab("") +
+    ylab("") +
+    coord_flip()
+
+layout <- "
+AD
+BD
+CD
+"
+
+a + b + c + g + plot_layout(design = layout)
+```
