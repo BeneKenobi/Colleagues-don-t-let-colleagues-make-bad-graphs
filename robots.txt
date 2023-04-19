@@ -1,1 +1,1 @@
-Sitemap: https://BeneKenobi.github.io/Colleagues-don-t-let-colleagues-make-bad-graphs/sitemap.xml
+Sitemap: https://github.com/BeneKenobi/Colleagues-don-t-let-colleagues-make-bad-graphs/sitemap.xml
