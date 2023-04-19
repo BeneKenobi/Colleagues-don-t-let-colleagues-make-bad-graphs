@@ -1,5 +1,9 @@
 project:
   title: "Colleagues Don’t Let Colleagues Make Bad Graphs"
+  type: website
+  resources:
+    - "fonts/*"
+    - "*.png"
 
 author:
   - name: Benedikt Schnur
@@ -13,10 +17,6 @@ format:
     theme: [default, ./custom.scss]
     menu: false
     slide-number: True
-
-resources:
-  - "fonts/*.ttf"
-  - "*.png"
 
 open-graph: true
 twitter-card: true
