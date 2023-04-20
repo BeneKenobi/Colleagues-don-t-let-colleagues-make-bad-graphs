@@ -3,7 +3,6 @@ project:
   type: website
   resources:
     - "fonts/*"
-    - "*.png"
 
 author:
   - name: Benedikt Schnur
