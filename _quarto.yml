@@ -10,20 +10,25 @@ author:
     orcid: 0000-0002-1977-7878
 institute: "Hannover Medical School (MHH), Department of Human Genetics"
 
+bibliography:
+  - references.bib
+  - grateful-refs.bib
+csl: "ieee.csl"
+
 image: "preview.png"
 
-format: 
+format:
   revealjs:
     theme: [default, ./custom.scss]
     menu: false
     slide-number: True
     fig-format: svg
+    link-external-newwindow: True
 
 knitr:
   opts_chunk:
     dev: svg
     dev.args: { bg: "transparent" }
-    
 
 open-graph: true
 twitter-card: true

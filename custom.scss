@@ -39,6 +39,7 @@ div.slide-background {
 
 .reveal .progress {
     color: $primary !important;
+    height: 5px !important;
 }
 
 .quarto-figure {
@@ -61,4 +62,25 @@ div.cell > details {
 .smallHeader {
     font-size: 0.5em !important;
     display: block !important;
+}
+
+.center-y {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+.center {
+    text-align: center !important;
+}
+
+.middle {
+    vertical-align: middle !important;
+}
+
+.bottom {
+    vertical-align: bottom !important;
 }
