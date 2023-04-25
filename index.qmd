@@ -23,6 +23,17 @@ bene_colors <- c(
     "#777586"
 )
 bene_palette = scale_fill_manual(values = bene_colors, breaks = waiver())
+pathwork_defauts <- plot_annotation(theme = theme(plot.background = element_rect(fill = "transparent", colour = NA)))
+theme_set(theme_minimal() +
+  theme(
+    legend.position="none",
+    plot.title = element_blank(),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    legend.margin=unit(0, "null"),
+    panel.background = element_rect(fill = "transparent", colour = NA),
+    plot.background = element_rect(fill = "transparent", colour = NA)
+  ))
 ```
 
 ```{r}
@@ -43,14 +54,6 @@ ggplot(data, aes(x="name", y=value, fill=name)) +
   coord_polar("y", start=0, direction = -1) +
   bene_palette +
   geom_text(aes(label = name), position = position_stack(vjust = 0.5), color="white") +
-  theme_minimal() +
-  theme(
-    legend.position="none",
-    plot.title = element_text(size=14),
-    panel.grid = element_blank(),
-    axis.text = element_blank(),
-    legend.margin=unit(0, "null")
-  ) +
   xlab("") +
   ylab("")
   
@@ -59,7 +62,7 @@ ggplot(data, aes(x="name", y=value, fill=name)) +
 a <- plot_pie(data1)
 b <- plot_pie(data2)
 c <- plot_pie(data3)
-a + b + c
+a + b + c + pathwork_defauts
 ```
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
@@ -75,13 +78,9 @@ a + b + c
 
 plot_bar <- function(data){
   ggplot(data, aes(x=name, y=value, fill=name)) +
-    geom_bar( stat = "identity") +
+    geom_bar(stat = "identity") +
     bene_palette +
-    theme_minimal() +
-    theme(
-      legend.position="none",
-      panel.grid = element_blank(),
-    ) +
+    geom_text(aes(label = name), position = position_stack(reverse=TRUE), vjust = 1.5, color="white") +
     ylim(0,25) +
     xlab("") +
     ylab("")
@@ -101,7 +100,7 @@ DEF
 DEF
 "
 
-a + b + c + d + e + f + plot_layout(design = layout)
+a + b + c + d + e + f + plot_layout(design = layout) + pathwork_defauts
 ```
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
@@ -129,7 +128,6 @@ data_combined <- rbind(data1, data2, data3)
 g <- ggplot(data_combined, aes(x=rev(type), y=value, fill=name)) +
     geom_bar(position=position_fill(reverse=TRUE), stat = "identity", width = 0.25) +
     bene_palette +
-    theme_minimal() +
     theme(
       legend.position="none",
       panel.grid = element_blank(),
@@ -149,5 +147,5 @@ BD
 CD
 "
 
-a + b + c + g + plot_layout(design = layout)
+a + b + c + g + plot_layout(design = layout) + pathwork_defauts
 ```

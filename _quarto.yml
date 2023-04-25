@@ -17,6 +17,13 @@ format:
     theme: [default, ./custom.scss]
     menu: false
     slide-number: True
+    fig-format: svg
+
+knitr:
+  opts_chunk:
+    dev: svg
+    dev.args: { bg: "transparent" }
+    
 
 open-graph: true
 twitter-card: true
