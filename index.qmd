@@ -287,7 +287,7 @@ Presentation based on
 
 [---]{}
 
-Source code available at [![](github-mark.svg){height=1em .bottom} GitHub](https://github.com/BeneKenobi/Colleagues-don-t-let-colleagues-make-bad-graphs)
+Source code available at [![](images/github-mark.svg){height=1em .bottom} GitHub](https://github.com/BeneKenobi/Colleagues-don-t-let-colleagues-make-bad-graphs)
 :::
 
 ## References {visibility="uncounted" .unnumbered .unlisted}
