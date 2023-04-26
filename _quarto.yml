@@ -24,6 +24,7 @@ format:
     slide-number: True
     fig-format: svg
     link-external-newwindow: True
+    logo: images/MHH_Logo.svg
 
 knitr:
   opts_chunk:
