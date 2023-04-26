@@ -290,10 +290,16 @@ Presentation based on
 Source code available at [![](images/github-mark.svg){height=1em .bottom} GitHub](https://github.com/BeneKenobi/Colleagues-don-t-let-colleagues-make-bad-graphs)
 :::
 
-## References {visibility="uncounted" .unnumbered .unlisted}
+## R Packages Used {.smaller}
+
 ```{r}
-citekeys <- cite_packages(output = "citekeys", out.dir = ".")
-nocite_references(citekeys, citation_processor = "pandoc")
+cite_packages(output = "table", out.dir = ".") %>%
+    mutate(Package = paste(Package, " [", Citation, "]", sep = "")) %>%
+    select(-Citation) %>%
+    knitr::kable(col.names = c("Package", "Version"), align = "lr")
 ```
+
+## References {.smaller visibility="uncounted" .unnumbered .unlisted}
+
 ::: {#refs}
 :::
