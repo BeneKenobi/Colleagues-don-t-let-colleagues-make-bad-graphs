@@ -73,7 +73,7 @@ div.cell>details {
     width: 100%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-  }
+}
 
 .center {
     text-align: center !important;
@@ -85,4 +85,25 @@ div.cell>details {
 
 .bottom {
     vertical-align: bottom !important;
+}
+
+table {
+    border-collapse: collapse !important;
+}
+
+.reveal table th {
+    /* Top thick line */
+    border-top: 2px solid !important;
+    /* Below head thin line */
+    border-bottom: 1px solid !important;
+}
+
+.reveal table :is(td, tr) {
+    /* Below head thin line */
+    border-bottom: none !important;
+}
+
+table tbody tr:last-child {
+    /* Bottom thick line */
+    border-bottom: 2px solid !important;
 }
