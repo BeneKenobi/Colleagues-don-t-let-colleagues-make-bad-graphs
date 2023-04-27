@@ -67,44 +67,9 @@ b <- plot_pie(data2)
 c <- plot_pie(data3)
 a + b + c + patchwork_defauts
 ```
-
-## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
-
-```{r}
-#| echo: true
-#| code-fold: true
-#| label: fig-pievsbar
-#| fig-cap: "Pie Charts vs. Bar Charts"
-#| warning: false
-
-# reuses plots of fig-pies
-
-plot_bar <- function(data) {
-    ggplot(data, aes(x = name, y = value, fill = name)) +
-        geom_bar(stat = "identity") +
-        bene_palette +
-        geom_text(aes(label = name), position = position_stack(reverse = TRUE), vjust = 1.5, color = "white") +
-        ylim(0, 25) +
-        xlab("") +
-        ylab("")
-}
-
-d <- plot_bar(data1)
-e <- plot_bar(data2)
-f <- plot_bar(data3)
-
-layout <- "
-ABC
-ABC
-DEF
-DEF
-DEF
-DEF
-DEF
-"
-
-a + b + c + d + e + f + plot_layout(design = layout) + patchwork_defauts
-```
+::: {.notes}
+Length is easier to estimate than angle, and the estimation of area is even worse.
+:::
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
 
@@ -151,6 +116,44 @@ CD
 "
 
 a + b + c + g + plot_layout(design = layout) + patchwork_defauts
+```
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-pievsbar
+#| fig-cap: "Pie Charts vs. Bar Charts"
+#| warning: false
+
+# reuses plots of fig-pies
+
+plot_bar <- function(data) {
+    ggplot(data, aes(x = name, y = value, fill = name)) +
+        geom_bar(stat = "identity") +
+        bene_palette +
+        geom_text(aes(label = name), position = position_stack(reverse = TRUE), vjust = 1.5, color = "white") +
+        ylim(0, 25) +
+        xlab("") +
+        ylab("")
+}
+
+d <- plot_bar(data1)
+e <- plot_bar(data2)
+f <- plot_bar(data3)
+
+layout <- "
+ABC
+ABC
+DEF
+DEF
+DEF
+DEF
+DEF
+"
+
+a + b + c + d + e + f + plot_layout(design = layout) + patchwork_defauts
 ```
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Bar Plots for Means Separation [@Weissgerber2015]
@@ -375,6 +378,12 @@ jitter_eg <- data_set %>%
 
 violin_eg + box_eg + jitter_eg
 ```
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Bar Plot Meadows
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Checking Outliers
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Plots with Red/Green or Rainbow color scales
 
 ##
 
