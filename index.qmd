@@ -2,7 +2,7 @@
 title: "Colleagues Don’t Let Colleagues Make Bad Graphs"
 ---
 
-## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts [@Holtz;@Siirtola2019;@Few2007;@Nussbaumer2011]
 
 ```{r}
 # Libraries
