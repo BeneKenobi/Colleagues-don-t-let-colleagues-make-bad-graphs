@@ -2,6 +2,18 @@
 title: "Colleagues Don’t Let Colleagues Make Bad Graphs"
 ---
 
+##
+
+::: {.center .center-y layout-valign="bottom"}
+Presentation based on
+
+*Friends Don't Let Friends Make Bad Graphs* [@Li2023]
+
+[---]{}
+
+Source code available at [![](images/github-mark.svg){height=1em .bottom} GitHub](https://github.com/BeneKenobi/Colleagues-don-t-let-colleagues-make-bad-graphs)
+:::
+
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts [@Holtz;@Siirtola2019;@Few2007;@Nussbaumer2011]
 
 ```{r}
@@ -12,6 +24,7 @@ library(viridis)
 library(patchwork)
 library(ggbeeswarm)
 library(grateful)
+library(prismatic)
 
 bene_colors <- c(
     "#47476b",
@@ -383,19 +396,142 @@ violin_eg + box_eg + jitter_eg
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Checking Outliers
 
-## [Colleagues Don't Let Colleagues Make]{.smallHeader} Plots with Red/Green or Rainbow color scales
+## [Colleagues Don't Let Colleagues Make]{.smallHeader}[Plots with Red/Green or Rainbow color scales]{.notThatSmallHeader}
 
-##
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-redgreen
+#| fig-cap: "Heatmaps with different color scales simulated in black/white and deuteranopia"
+#| warning: false
 
-::: {.center .center-y layout-valign="bottom"}
-Presentation based on
+abc_1 <- expand.grid(
+  a = c(1:10),
+  b = c(1:10)
+) %>% 
+  mutate(c = a + b)
 
-*Friends Don't Let Friends Make Bad Graphs* [@Li2023]
+to_grey_scale <- function(hex){
+  temp = col2rgb(hex) %>% 
+    t() %>% 
+    as.data.frame() %>% 
+    mutate(gs = 0.299*red + 0.587*green + 0.114*blue)
+  
+  rgb(temp$gs, temp$gs, temp$gs, maxColorValue = 256)
+}
 
-[---]{}
+grid_theme <- theme(
+    text = element_text(color = "black"),
+    #legend.position = "none",
+    legend.title = element_blank(),
+    legend.text = element_blank(),
+    axis.title = element_blank(),
+    axis.text = element_text(color = "black"),
+  )
 
-Source code available at [![](images/github-mark.svg){height=1em .bottom} GitHub](https://github.com/BeneKenobi/Colleagues-don-t-let-colleagues-make-bad-graphs)
-:::
+# Red/green
+
+Red_green <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradient2(low = "red", mid = "white", high = "green", midpoint = 11) +
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+## Grey scale
+
+Red_green_gs <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradient2(low = to_grey_scale("red"), 
+                       mid = "white", 
+                       high = to_grey_scale("green"), midpoint = 11) +
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+## Red/green colorblind
+
+Red_green_deu <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradient2(low = clr_deutan("red"), 
+                       mid = clr_deutan("white"), 
+                       high = clr_deutan("green"), midpoint = 11) +
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+# Rainbow
+
+Rainbow1 <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradientn(colors = rainbow(20)) +
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+## grey scale
+
+Rainbow_gs <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradientn(colors = rainbow(20) %>% to_grey_scale()) +
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+## Red/green color blind
+
+Rainbow_deu <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradientn(colors = rainbow(20) %>% clr_deutan()) +
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+# Viridis 
+
+viridis_optionD <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradientn(colors = viridis(100)) +
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+## Grey scale
+
+viridis_gs <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradientn(colors = to_grey_scale(viridis(100))) +
+  
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+## Red/green color blind
+
+viridis_deu <- abc_1 %>% 
+  ggplot(aes(x = a, y = b)) +
+  geom_tile(aes(fill = c)) +
+  scale_fill_gradientn(colors = clr_deutan(viridis(100))) +
+  
+  theme_classic() +
+  grid_theme +
+  coord_fixed()
+
+wrap_plots(Red_green, Red_green_gs, Red_green_deu,
+  Rainbow1, Rainbow_gs, Rainbow_deu,
+  viridis_optionD, viridis_gs, viridis_deu,
+  nrow = 3, 
+  ncol = 3
+)
+```
 
 ## R Packages Used {.smaller}
 
