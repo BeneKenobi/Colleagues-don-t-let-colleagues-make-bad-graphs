@@ -52,6 +52,15 @@ theme_set(theme_minimal() +
         panel.background = element_rect(fill = "transparent", colour = NA),
         plot.background = element_rect(fill = "transparent", colour = NA)
     ))
+
+margin_spacer <- function(x) {
+  left_length <- nchar(levels(factor(x)))[1]
+  if (left_length > 8) {
+    return((left_length - 8) * 3)
+  }
+  else
+    return(0)
+}
 ```
 
 ```{r}
@@ -247,7 +256,6 @@ box <- groups_long %>%
     ggplot(aes(x = group, y = response)) +
     geom_boxplot(aes(fill = group), width = 0.5) +
     labs(
-        x = "Group",
         y = "Response"
     ) +
     bene_palette_shifted +
@@ -393,6 +401,64 @@ violin_eg + box_eg + jitter_eg
 ```
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Bar Plot Meadows
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-barmeadows
+#| fig-cap: "Bars of results"
+#| warning: false
+highway_signs <- read_tsv("https://tjfisher19.github.io/introStatModeling/data/highwaySigns.tsv", col_types=cols())
+highway_signs <- highway_signs %>%
+  mutate(Material = as.factor(Material),
+         Size = factor(Size, levels=c("Small", "Medium", "Large")))
+
+highway_signs <- highway_signs %>% 
+  group_by(Size, Material) %>% 
+  mutate(Observation = as.factor(row_number())) %>% 
+  ungroup()
+
+highway_signs$SizeMaterialObservation <- paste(highway_signs$Size, paste("Material",highway_signs$Material, sep=""), paste("Observation",highway_signs$Observation, sep=""), sep = "_")
+barmeadows <- highway_signs %>% 
+  ggplot(aes(x = SizeMaterialObservation, y = Distance, fill=bene_colors[1])) +
+  geom_bar(stat = "identity", position="dodge", width = 0.75) +
+    labs(
+        y = "Distance (ft)",
+        x = ""
+    ) +
+  scale_y_continuous(expand = expand_scale(mult = c(0, 0.1))) +
+  bene_palette +
+  theme_classic() +
+  theme(
+    text = element_text(color = "black"),
+    legend.position = "none",
+    axis.text = element_text(color = "black"),
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
+    plot.margin = margin(l = 0 + margin_spacer(highway_signs$SizeMaterialObservation), t = 4)
+  )
+
+barmeadows
+```
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Bar Plot Meadows
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-barmeadowsfixed
+#| fig-cap: "Better presentation of multi-factorial data"
+#| warning: false
+
+dotsformultifactor <- highway_signs %>% 
+  ggplot(aes(x = Material, y = Distance)) +
+  facet_wrap( ~ Size, scales = "free_x", strip.position = "bottom") +
+  geom_point(aes(fill = Material), shape = 21, size = 4, color = "black",
+             position = position_jitter(seed = 2363, width = 0.2)) +
+  bene_palette_shifted +
+  theme_classic()
+
+dotsformultifactor
+```
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Checking Outliers
 
