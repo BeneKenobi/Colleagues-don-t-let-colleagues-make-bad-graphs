@@ -30,6 +30,7 @@ knitr:
   opts_chunk:
     dev: svg
     dev.args: { bg: "transparent" }
+    tidy: styler
 
 open-graph: true
 twitter-card: true
