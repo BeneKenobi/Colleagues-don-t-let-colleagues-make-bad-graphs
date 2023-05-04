@@ -725,7 +725,7 @@ wrap_plots(p1, p2, p4, p3,
 #| echo: true
 #| code-fold: true
 #| label: fig-barplotalternatives
-#| fig-cap: "Alternatives to bar plots: Lollipot Plot and Treemap"
+#| fig-cap: "Alternatives to bar plots: lollipop Plot and treemap"
 #| warning: false
 
 # total = 31983
