@@ -436,7 +436,7 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <section id="section" class="slide level2">
 <h2></h2>
 <div class="center center-y" data-layout-valign="bottom">
-<p>Presentation based on</p>
+<p><strong>Presentation based on</strong></p>
 <p><em>Friends Don’t Let Friends Make Bad Graphs</em> <span class="citation" data-cites="Li2023"><a href="#/references" role="doc-biblioref" onclick="">[1]</a></span></p>
 <p><span>—</span></p>
 <p>Source code available at <a href="https://github.com/BeneKenobi/Colleagues-don-t-let-colleagues-make-bad-graphs"><img data-src="images/github-mark.svg" class="bottom" style="height:1em"> GitHub</a></p>
@@ -455,7 +455,7 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">"name"</span>, <span class="at">y =</span> value, <span class="at">fill =</span> name)) <span class="sc">+</span></span>
 <span id="cb1-7"><a href="#cb1-7"></a>    <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a>    <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>    bene_palette <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    bene_palette_shifted <span class="sc">+</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
 <span id="cb1-11"><a href="#cb1-11"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb1-12"><a href="#cb1-12"></a>    <span class="fu">ylab</span>(<span class="st">""</span>)</span>
@@ -469,7 +469,11 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 
 </div>
 <img data-src="index_files/figure-revealjs/fig-pies-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;1: Pie Charts</p><aside class="notes">
-<p>Length is easier to estimate than angle, and the estimation of area is even worse.</p>
+<ul>
+<li>Areas are hard to estimate</li>
+<li>Angles are even harder to estimate</li>
+<li>Lengths are easiest to estimate</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -501,8 +505,8 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <span id="cb2-12"><a href="#cb2-12"></a>data_combined <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data1, data2, data3)</span>
 <span id="cb2-13"><a href="#cb2-13"></a></span>
 <span id="cb2-14"><a href="#cb2-14"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_combined, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">rev</span>(type), <span class="at">y =</span> value, <span class="at">fill =</span> name)) <span class="sc">+</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>  bene_palette <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.25</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  bene_palette_shifted <span class="sc">+</span></span>
 <span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">theme</span>(</span>
 <span id="cb2-18"><a href="#cb2-18"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
 <span id="cb2-19"><a href="#cb2-19"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
@@ -526,7 +530,22 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 </details>
 
 </div>
-<img data-src="index_files/figure-revealjs/fig-pievsstackbar-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;2: Pie Charts vs.&nbsp;Bar Charts (stacked)</p></section>
+<img data-src="index_files/figure-revealjs/fig-pievsstackbar-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;2: Pie Charts vs.&nbsp;Bar Charts (stacked)</p><aside class="notes">
+<ul>
+<li>Areas are still hard to estimate and compare</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="colleagues-dont-let-colleagues-make-pie-charts-1" class="slide level2">
 <h2><span class="smallHeader">Colleagues Don’t Let Colleagues Make</span> Pie Charts</h2>
 <div class="cell">
@@ -536,8 +555,8 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a>plot_bar <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
 <span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value, <span class="at">fill =</span> name)) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>    bene_palette <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    bene_palette_shifted <span class="sc">+</span></span>
 <span id="cb3-7"><a href="#cb3-7"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>), <span class="at">vjust =</span> <span class="fl">1.5</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a>    <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">25</span>) <span class="sc">+</span></span>
 <span id="cb3-9"><a href="#cb3-9"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
@@ -692,7 +711,26 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 </details>
 
 </div>
-<img data-src="index_files/figure-revealjs/fig-meansseperationall-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;5: Means seperation alternatives: box plot and beeswarm plot</p></section>
+<img data-src="index_files/figure-revealjs/fig-meansseperationall-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;5: Means seperation alternatives: box plot and beeswarm plot</p><aside class="notes">
+<ul>
+<li>Box Plots show the median and the interquartile range (IQR) of the data
+<ul>
+<li>Whiskers are min and max OR 1.5 * IQR</li>
+<li>Points are outliers</li>
+</ul></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="colleagues-dont-let-colleagues-make-violin-plots-for-small-sample-sizes" class="slide level2">
 <h2><span class="smallHeader">Colleagues Don’t Let Colleagues Make</span> Violin Plots for Small Sample Sizes</h2>
 <div class="cell">
@@ -839,118 +877,267 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <span id="cb10-15"><a href="#cb10-15"></a>  <span class="fu">theme</span>(</span>
 <span id="cb10-16"><a href="#cb10-16"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
 <span id="cb10-17"><a href="#cb10-17"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb10-18"><a href="#cb10-18"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb10-19"><a href="#cb10-19"></a>    <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb10-20"><a href="#cb10-20"></a>    <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-21"><a href="#cb10-21"></a>    <span class="at">strip.placement =</span> <span class="st">"outside"</span>,</span>
-<span id="cb10-22"><a href="#cb10-22"></a>  )</span>
-<span id="cb10-23"><a href="#cb10-23"></a></span>
-<span id="cb10-24"><a href="#cb10-24"></a>dotsformultifactor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-20"><a href="#cb10-20"></a>    <span class="at">strip.placement =</span> <span class="st">"outside"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21"></a>  )</span>
+<span id="cb10-22"><a href="#cb10-22"></a></span>
+<span id="cb10-23"><a href="#cb10-23"></a>dotsformultifactor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
 <img data-src="index_files/figure-revealjs/fig-barmeadowsfixed-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;10: Multi-factorial data as boxplot facet</p></section>
+<section id="colleagues-dont-let-colleagues-makeplots-with-redgreen-or-rainbow-color-scales" class="slide level2">
+<h2><span class="smallHeader">Colleagues Don’t Let Colleagues Make</span><span class="notThatSmallHeader">Plots with Red/Green or Rainbow color scales</span></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>abc_1 <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">mutate</span>(<span class="at">c =</span> a <span class="sc">+</span> b)</span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a>to_grey_scale <span class="ot">&lt;-</span> <span class="cf">function</span>(hex) {</span>
+<span id="cb11-8"><a href="#cb11-8"></a>  temp <span class="ot">&lt;-</span> <span class="fu">col2rgb</span>(hex) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>    <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="fu">mutate</span>(<span class="at">gs =</span> <span class="fl">0.299</span> <span class="sc">*</span> red <span class="sc">+</span> <span class="fl">0.587</span> <span class="sc">*</span> green <span class="sc">+</span> <span class="fl">0.114</span> <span class="sc">*</span> blue)</span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="fu">rgb</span>(temp<span class="sc">$</span>gs, temp<span class="sc">$</span>gs, temp<span class="sc">$</span>gs, <span class="at">maxColorValue =</span> <span class="dv">256</span>)</span>
+<span id="cb11-14"><a href="#cb11-14"></a>}</span>
+<span id="cb11-15"><a href="#cb11-15"></a></span>
+<span id="cb11-16"><a href="#cb11-16"></a>grid_theme <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
+<span id="cb11-17"><a href="#cb11-17"></a>  <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb11-18"><a href="#cb11-18"></a>  <span class="co"># legend.position = "none",</span></span>
+<span id="cb11-19"><a href="#cb11-19"></a>  <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-20"><a href="#cb11-20"></a>  <span class="at">legend.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-21"><a href="#cb11-21"></a>  <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-22"><a href="#cb11-22"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb11-23"><a href="#cb11-23"></a>)</span>
+<span id="cb11-24"><a href="#cb11-24"></a></span>
+<span id="cb11-25"><a href="#cb11-25"></a><span class="co"># Red/green</span></span>
+<span id="cb11-26"><a href="#cb11-26"></a></span>
+<span id="cb11-27"><a href="#cb11-27"></a>Red_green <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-28"><a href="#cb11-28"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-29"><a href="#cb11-29"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-30"><a href="#cb11-30"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">"red"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"green"</span>, <span class="at">midpoint =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb11-31"><a href="#cb11-31"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-32"><a href="#cb11-32"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-33"><a href="#cb11-33"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-34"><a href="#cb11-34"></a></span>
+<span id="cb11-35"><a href="#cb11-35"></a><span class="do">## Grey scale</span></span>
+<span id="cb11-36"><a href="#cb11-36"></a></span>
+<span id="cb11-37"><a href="#cb11-37"></a>Red_green_gs <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-38"><a href="#cb11-38"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-39"><a href="#cb11-39"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-40"><a href="#cb11-40"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
+<span id="cb11-41"><a href="#cb11-41"></a>    <span class="at">low =</span> <span class="fu">to_grey_scale</span>(<span class="st">"red"</span>),</span>
+<span id="cb11-42"><a href="#cb11-42"></a>    <span class="at">mid =</span> <span class="st">"white"</span>,</span>
+<span id="cb11-43"><a href="#cb11-43"></a>    <span class="at">high =</span> <span class="fu">to_grey_scale</span>(<span class="st">"green"</span>), <span class="at">midpoint =</span> <span class="dv">11</span></span>
+<span id="cb11-44"><a href="#cb11-44"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-45"><a href="#cb11-45"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-46"><a href="#cb11-46"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-47"><a href="#cb11-47"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-48"><a href="#cb11-48"></a></span>
+<span id="cb11-49"><a href="#cb11-49"></a><span class="do">## Red/green colorblind</span></span>
+<span id="cb11-50"><a href="#cb11-50"></a></span>
+<span id="cb11-51"><a href="#cb11-51"></a>Red_green_deu <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-52"><a href="#cb11-52"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-53"><a href="#cb11-53"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-54"><a href="#cb11-54"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
+<span id="cb11-55"><a href="#cb11-55"></a>    <span class="at">low =</span> <span class="fu">clr_deutan</span>(<span class="st">"red"</span>),</span>
+<span id="cb11-56"><a href="#cb11-56"></a>    <span class="at">mid =</span> <span class="fu">clr_deutan</span>(<span class="st">"white"</span>),</span>
+<span id="cb11-57"><a href="#cb11-57"></a>    <span class="at">high =</span> <span class="fu">clr_deutan</span>(<span class="st">"green"</span>), <span class="at">midpoint =</span> <span class="dv">11</span></span>
+<span id="cb11-58"><a href="#cb11-58"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-59"><a href="#cb11-59"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-60"><a href="#cb11-60"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-61"><a href="#cb11-61"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-62"><a href="#cb11-62"></a></span>
+<span id="cb11-63"><a href="#cb11-63"></a><span class="co"># Rainbow</span></span>
+<span id="cb11-64"><a href="#cb11-64"></a></span>
+<span id="cb11-65"><a href="#cb11-65"></a>Rainbow1 <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-66"><a href="#cb11-66"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-67"><a href="#cb11-67"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-68"><a href="#cb11-68"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb11-69"><a href="#cb11-69"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-70"><a href="#cb11-70"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-71"><a href="#cb11-71"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-72"><a href="#cb11-72"></a></span>
+<span id="cb11-73"><a href="#cb11-73"></a><span class="do">## grey scale</span></span>
+<span id="cb11-74"><a href="#cb11-74"></a></span>
+<span id="cb11-75"><a href="#cb11-75"></a>Rainbow_gs <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-76"><a href="#cb11-76"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-77"><a href="#cb11-77"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-78"><a href="#cb11-78"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">to_grey_scale</span>()) <span class="sc">+</span></span>
+<span id="cb11-79"><a href="#cb11-79"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-80"><a href="#cb11-80"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-81"><a href="#cb11-81"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-82"><a href="#cb11-82"></a></span>
+<span id="cb11-83"><a href="#cb11-83"></a><span class="do">## Red/green color blind</span></span>
+<span id="cb11-84"><a href="#cb11-84"></a></span>
+<span id="cb11-85"><a href="#cb11-85"></a>Rainbow_deu <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-86"><a href="#cb11-86"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-87"><a href="#cb11-87"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-88"><a href="#cb11-88"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">clr_deutan</span>()) <span class="sc">+</span></span>
+<span id="cb11-89"><a href="#cb11-89"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-90"><a href="#cb11-90"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-91"><a href="#cb11-91"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-92"><a href="#cb11-92"></a></span>
+<span id="cb11-93"><a href="#cb11-93"></a><span class="co"># Viridis</span></span>
+<span id="cb11-94"><a href="#cb11-94"></a></span>
+<span id="cb11-95"><a href="#cb11-95"></a>viridis_optionD <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-96"><a href="#cb11-96"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-97"><a href="#cb11-97"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-98"><a href="#cb11-98"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">viridis</span>(<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb11-99"><a href="#cb11-99"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-100"><a href="#cb11-100"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-101"><a href="#cb11-101"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-102"><a href="#cb11-102"></a></span>
+<span id="cb11-103"><a href="#cb11-103"></a><span class="do">## Grey scale</span></span>
+<span id="cb11-104"><a href="#cb11-104"></a></span>
+<span id="cb11-105"><a href="#cb11-105"></a>viridis_gs <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-106"><a href="#cb11-106"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-107"><a href="#cb11-107"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-108"><a href="#cb11-108"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">to_grey_scale</span>(<span class="fu">viridis</span>(<span class="dv">100</span>))) <span class="sc">+</span></span>
+<span id="cb11-109"><a href="#cb11-109"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-110"><a href="#cb11-110"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-111"><a href="#cb11-111"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-112"><a href="#cb11-112"></a></span>
+<span id="cb11-113"><a href="#cb11-113"></a><span class="do">## Red/green color blind</span></span>
+<span id="cb11-114"><a href="#cb11-114"></a></span>
+<span id="cb11-115"><a href="#cb11-115"></a>viridis_deu <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
+<span id="cb11-116"><a href="#cb11-116"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
+<span id="cb11-117"><a href="#cb11-117"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
+<span id="cb11-118"><a href="#cb11-118"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">clr_deutan</span>(<span class="fu">viridis</span>(<span class="dv">100</span>))) <span class="sc">+</span></span>
+<span id="cb11-119"><a href="#cb11-119"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-120"><a href="#cb11-120"></a>  grid_theme <span class="sc">+</span></span>
+<span id="cb11-121"><a href="#cb11-121"></a>  <span class="fu">coord_fixed</span>()</span>
+<span id="cb11-122"><a href="#cb11-122"></a></span>
+<span id="cb11-123"><a href="#cb11-123"></a><span class="fu">wrap_plots</span>(Red_green, Red_green_gs, Red_green_deu,</span>
+<span id="cb11-124"><a href="#cb11-124"></a>  Rainbow1, Rainbow_gs, Rainbow_deu,</span>
+<span id="cb11-125"><a href="#cb11-125"></a>  viridis_optionD, viridis_gs, viridis_deu,</span>
+<span id="cb11-126"><a href="#cb11-126"></a>  <span class="at">nrow =</span> <span class="dv">3</span>,</span>
+<span id="cb11-127"><a href="#cb11-127"></a>  <span class="at">ncol =</span> <span class="dv">3</span></span>
+<span id="cb11-128"><a href="#cb11-128"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="index_files/figure-revealjs/fig-redgreen-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;11: Heatmaps with different color scales simulated in black/white and deuteranopia</p><aside class="notes">
+<ul>
+<li>Red–green colorblindness: 8% males, 0.5% females (Northern European descent)</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="colleagues-dont-let-colleagues-make-heatmaps-without-checking-outliers" class="slide level2">
 <h2><span class="smallHeader">Colleagues Don’t Let Colleagues Make</span> Heatmaps without Checking Outliers</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">set.seed</span>(<span class="dv">2363</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">8</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">12</span>)</span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a>group3 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">8</span>)</span>
-<span id="cb11-7"><a href="#cb11-7"></a>group4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a></span>
-<span id="cb11-9"><a href="#cb11-9"></a>group5 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a>toydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb11-12"><a href="#cb11-12"></a>  <span class="at">observation1 =</span> <span class="fu">c</span>(group1, group2),</span>
-<span id="cb11-13"><a href="#cb11-13"></a>  <span class="at">observation2 =</span> <span class="fu">c</span>(group3, group4, group5)</span>
-<span id="cb11-14"><a href="#cb11-14"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a>  <span class="fu">mutate</span>(<span class="at">feature =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>feature, <span class="at">names_to =</span> <span class="st">"observation"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-17"><a href="#cb11-17"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">str_remove</span>(observation, <span class="st">"observation"</span>))</span>
-<span id="cb11-18"><a href="#cb11-18"></a></span>
-<span id="cb11-19"><a href="#cb11-19"></a>p1 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
-<span id="cb11-20"><a href="#cb11-20"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-21"><a href="#cb11-21"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> observation2, <span class="at">y =</span> feature)) <span class="sc">+</span></span>
-<span id="cb11-22"><a href="#cb11-22"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb11-23"><a href="#cb11-23"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb11-24"><a href="#cb11-24"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-25"><a href="#cb11-25"></a>    <span class="at">x =</span> <span class="st">"Observations"</span>,</span>
-<span id="cb11-26"><a href="#cb11-26"></a>    <span class="at">y =</span> <span class="st">"Features"</span></span>
-<span id="cb11-27"><a href="#cb11-27"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-28"><a href="#cb11-28"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb11-29"><a href="#cb11-29"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb11-30"><a href="#cb11-30"></a></span>
-<span id="cb11-31"><a href="#cb11-31"></a>p2 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
-<span id="cb11-32"><a href="#cb11-32"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-33"><a href="#cb11-33"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(value, <span class="at">ties.method =</span> <span class="st">"first"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-34"><a href="#cb11-34"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> rank)) <span class="sc">+</span></span>
-<span id="cb11-35"><a href="#cb11-35"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb11-36"><a href="#cb11-36"></a>    <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb11-37"><a href="#cb11-37"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> value), <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb11-38"><a href="#cb11-38"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-39"><a href="#cb11-39"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb11-40"><a href="#cb11-40"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb11-41"><a href="#cb11-41"></a>  <span class="fu">theme</span>(</span>
-<span id="cb11-42"><a href="#cb11-42"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb11-43"><a href="#cb11-43"></a>  )</span>
-<span id="cb11-44"><a href="#cb11-44"></a></span>
-<span id="cb11-45"><a href="#cb11-45"></a>p3 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
-<span id="cb11-46"><a href="#cb11-46"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-47"><a href="#cb11-47"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(value, <span class="at">ties.method =</span> <span class="st">"first"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-48"><a href="#cb11-48"></a>  <span class="fu">mutate</span>(<span class="at">value2 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb11-49"><a href="#cb11-49"></a>    value <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb11-50"><a href="#cb11-50"></a>    T <span class="sc">~</span> value</span>
-<span id="cb11-51"><a href="#cb11-51"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb11-52"><a href="#cb11-52"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> rank)) <span class="sc">+</span></span>
-<span id="cb11-53"><a href="#cb11-53"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb11-54"><a href="#cb11-54"></a>    <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb11-55"><a href="#cb11-55"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> value2), <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb11-56"><a href="#cb11-56"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-57"><a href="#cb11-57"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb11-58"><a href="#cb11-58"></a>    <span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>),</span>
-<span id="cb11-59"><a href="#cb11-59"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb11-60"><a href="#cb11-60"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"&gt;2"</span>)</span>
-<span id="cb11-61"><a href="#cb11-61"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-62"><a href="#cb11-62"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"value"</span>) <span class="sc">+</span></span>
-<span id="cb11-63"><a href="#cb11-63"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb11-64"><a href="#cb11-64"></a>  <span class="fu">theme</span>(</span>
-<span id="cb11-65"><a href="#cb11-65"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb11-66"><a href="#cb11-66"></a>  )</span>
-<span id="cb11-67"><a href="#cb11-67"></a></span>
-<span id="cb11-68"><a href="#cb11-68"></a>p4 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
-<span id="cb11-69"><a href="#cb11-69"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-70"><a href="#cb11-70"></a>  <span class="fu">mutate</span>(<span class="at">value2 =</span> <span class="fu">case_when</span>(</span>
-<span id="cb11-71"><a href="#cb11-71"></a>    value <span class="sc">&gt;=</span> <span class="fl">1.5</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb11-72"><a href="#cb11-72"></a>    T <span class="sc">~</span> value</span>
-<span id="cb11-73"><a href="#cb11-73"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb11-74"><a href="#cb11-74"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> observation2, <span class="at">y =</span> feature)) <span class="sc">+</span></span>
-<span id="cb11-75"><a href="#cb11-75"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value2)) <span class="sc">+</span></span>
-<span id="cb11-76"><a href="#cb11-76"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb11-77"><a href="#cb11-77"></a>    <span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>),</span>
-<span id="cb11-78"><a href="#cb11-78"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb11-79"><a href="#cb11-79"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"&gt;2"</span>)</span>
-<span id="cb11-80"><a href="#cb11-80"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-81"><a href="#cb11-81"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-82"><a href="#cb11-82"></a>    <span class="at">x =</span> <span class="st">"Observations"</span>,</span>
-<span id="cb11-83"><a href="#cb11-83"></a>    <span class="at">y =</span> <span class="st">"Features"</span>,</span>
-<span id="cb11-84"><a href="#cb11-84"></a>    <span class="at">fill =</span> <span class="st">"value"</span></span>
-<span id="cb11-85"><a href="#cb11-85"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-86"><a href="#cb11-86"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb11-87"><a href="#cb11-87"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb11-88"><a href="#cb11-88"></a></span>
-<span id="cb11-89"><a href="#cb11-89"></a><span class="fu">wrap_plots</span>(p1, p2, p4, p3,</span>
-<span id="cb11-90"><a href="#cb11-90"></a>  <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb11-91"><a href="#cb11-91"></a>  <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.7</span>)</span>
-<span id="cb11-92"><a href="#cb11-92"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">set.seed</span>(<span class="dv">2363</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">8</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">12</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a>group3 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">8</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>group4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.2</span>, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>group5 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb12-8"><a href="#cb12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9"></a>toydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="at">observation1 =</span> <span class="fu">c</span>(group1, group2),</span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="at">observation2 =</span> <span class="fu">c</span>(group3, group4, group5)</span>
+<span id="cb12-12"><a href="#cb12-12"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">mutate</span>(<span class="at">feature =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>feature, <span class="at">names_to =</span> <span class="st">"observation"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">str_remove</span>(observation, <span class="st">"observation"</span>))</span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a>p1 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> observation2, <span class="at">y =</span> feature)) <span class="sc">+</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-23"><a href="#cb12-23"></a>    <span class="at">x =</span> <span class="st">"Observations"</span>,</span>
+<span id="cb12-24"><a href="#cb12-24"></a>    <span class="at">y =</span> <span class="st">"Features"</span></span>
+<span id="cb12-25"><a href="#cb12-25"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-27"><a href="#cb12-27"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb12-28"><a href="#cb12-28"></a></span>
+<span id="cb12-29"><a href="#cb12-29"></a>p2 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb12-30"><a href="#cb12-30"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(value, <span class="at">ties.method =</span> <span class="st">"first"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-32"><a href="#cb12-32"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> rank)) <span class="sc">+</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb12-34"><a href="#cb12-34"></a>    <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb12-35"><a href="#cb12-35"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> value), <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb12-36"><a href="#cb12-36"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-37"><a href="#cb12-37"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb12-38"><a href="#cb12-38"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-39"><a href="#cb12-39"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-40"><a href="#cb12-40"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb12-41"><a href="#cb12-41"></a>  )</span>
+<span id="cb12-42"><a href="#cb12-42"></a></span>
+<span id="cb12-43"><a href="#cb12-43"></a>p3 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb12-44"><a href="#cb12-44"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-45"><a href="#cb12-45"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(value, <span class="at">ties.method =</span> <span class="st">"first"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-46"><a href="#cb12-46"></a>  <span class="fu">mutate</span>(<span class="at">value2 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-47"><a href="#cb12-47"></a>    value <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-48"><a href="#cb12-48"></a>    T <span class="sc">~</span> value</span>
+<span id="cb12-49"><a href="#cb12-49"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb12-50"><a href="#cb12-50"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> rank)) <span class="sc">+</span></span>
+<span id="cb12-51"><a href="#cb12-51"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb12-52"><a href="#cb12-52"></a>    <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb12-53"><a href="#cb12-53"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> value2), <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb12-54"><a href="#cb12-54"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-55"><a href="#cb12-55"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb12-56"><a href="#cb12-56"></a>    <span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>),</span>
+<span id="cb12-57"><a href="#cb12-57"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb12-58"><a href="#cb12-58"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"&gt;2"</span>)</span>
+<span id="cb12-59"><a href="#cb12-59"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-60"><a href="#cb12-60"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"value"</span>) <span class="sc">+</span></span>
+<span id="cb12-61"><a href="#cb12-61"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-62"><a href="#cb12-62"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-63"><a href="#cb12-63"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb12-64"><a href="#cb12-64"></a>  )</span>
+<span id="cb12-65"><a href="#cb12-65"></a></span>
+<span id="cb12-66"><a href="#cb12-66"></a>p4 <span class="ot">&lt;-</span> toydata <span class="sc">%&gt;%</span></span>
+<span id="cb12-67"><a href="#cb12-67"></a>  <span class="fu">mutate</span>(<span class="at">observation2 =</span> <span class="fu">fct_rev</span>(observation2)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-68"><a href="#cb12-68"></a>  <span class="fu">mutate</span>(<span class="at">value2 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-69"><a href="#cb12-69"></a>    value <span class="sc">&gt;=</span> <span class="fl">1.5</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-70"><a href="#cb12-70"></a>    T <span class="sc">~</span> value</span>
+<span id="cb12-71"><a href="#cb12-71"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb12-72"><a href="#cb12-72"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> observation2, <span class="at">y =</span> feature)) <span class="sc">+</span></span>
+<span id="cb12-73"><a href="#cb12-73"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value2)) <span class="sc">+</span></span>
+<span id="cb12-74"><a href="#cb12-74"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb12-75"><a href="#cb12-75"></a>    <span class="at">colors =</span> <span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">10</span>),</span>
+<span id="cb12-76"><a href="#cb12-76"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb12-77"><a href="#cb12-77"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"&gt;2"</span>)</span>
+<span id="cb12-78"><a href="#cb12-78"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-79"><a href="#cb12-79"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-80"><a href="#cb12-80"></a>    <span class="at">x =</span> <span class="st">"Observations"</span>,</span>
+<span id="cb12-81"><a href="#cb12-81"></a>    <span class="at">y =</span> <span class="st">"Features"</span>,</span>
+<span id="cb12-82"><a href="#cb12-82"></a>    <span class="at">fill =</span> <span class="st">"value"</span></span>
+<span id="cb12-83"><a href="#cb12-83"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-84"><a href="#cb12-84"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-85"><a href="#cb12-85"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb12-86"><a href="#cb12-86"></a></span>
+<span id="cb12-87"><a href="#cb12-87"></a><span class="fu">wrap_plots</span>(p1, p2, p4, p3,</span>
+<span id="cb12-88"><a href="#cb12-88"></a>  <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb12-89"><a href="#cb12-89"></a>  <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.7</span>)</span>
+<span id="cb12-90"><a href="#cb12-90"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="index_files/figure-revealjs/fig-heatsandoutliers-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;11: Heatmaps with outliers</p><aside class="notes">
+<img data-src="index_files/figure-revealjs/fig-heatsandoutliers-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;12: Heatmaps with outliers</p><aside class="notes">
 <p>95% quantile = 1.723745</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -964,143 +1151,42 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
           display:block!important;
       }</style></aside>
 </section>
-<section id="colleagues-dont-let-colleagues-makeplots-with-redgreen-or-rainbow-color-scales" class="slide level2">
-<h2><span class="smallHeader">Colleagues Don’t Let Colleagues Make</span><span class="notThatSmallHeader">Plots with Red/Green or Rainbow color scales</span></h2>
+<section id="bonus-bar-plot-alternatives" class="slide level2">
+<h2>Bonus: Bar Plot Alternatives</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>abc_1 <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb12-4"><a href="#cb12-4"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">mutate</span>(<span class="at">c =</span> a <span class="sc">+</span> b)</span>
-<span id="cb12-6"><a href="#cb12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7"></a>to_grey_scale <span class="ot">&lt;-</span> <span class="cf">function</span>(hex) {</span>
-<span id="cb12-8"><a href="#cb12-8"></a>  temp <span class="ot">&lt;-</span> <span class="fu">col2rgb</span>(hex) <span class="sc">%&gt;%</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>    <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-11"><a href="#cb12-11"></a>    <span class="fu">mutate</span>(<span class="at">gs =</span> <span class="fl">0.299</span> <span class="sc">*</span> red <span class="sc">+</span> <span class="fl">0.587</span> <span class="sc">*</span> green <span class="sc">+</span> <span class="fl">0.114</span> <span class="sc">*</span> blue)</span>
-<span id="cb12-12"><a href="#cb12-12"></a></span>
-<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">rgb</span>(temp<span class="sc">$</span>gs, temp<span class="sc">$</span>gs, temp<span class="sc">$</span>gs, <span class="at">maxColorValue =</span> <span class="dv">256</span>)</span>
-<span id="cb12-14"><a href="#cb12-14"></a>}</span>
-<span id="cb12-15"><a href="#cb12-15"></a></span>
-<span id="cb12-16"><a href="#cb12-16"></a>grid_theme <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
-<span id="cb12-17"><a href="#cb12-17"></a>  <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb12-18"><a href="#cb12-18"></a>  <span class="co"># legend.position = "none",</span></span>
-<span id="cb12-19"><a href="#cb12-19"></a>  <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-20"><a href="#cb12-20"></a>  <span class="at">legend.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-21"><a href="#cb12-21"></a>  <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-22"><a href="#cb12-22"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb12-23"><a href="#cb12-23"></a>)</span>
-<span id="cb12-24"><a href="#cb12-24"></a></span>
-<span id="cb12-25"><a href="#cb12-25"></a><span class="co"># Red/green</span></span>
-<span id="cb12-26"><a href="#cb12-26"></a></span>
-<span id="cb12-27"><a href="#cb12-27"></a>Red_green <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-28"><a href="#cb12-28"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-29"><a href="#cb12-29"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-30"><a href="#cb12-30"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">"red"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"green"</span>, <span class="at">midpoint =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
-<span id="cb12-31"><a href="#cb12-31"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-32"><a href="#cb12-32"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-33"><a href="#cb12-33"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-34"><a href="#cb12-34"></a></span>
-<span id="cb12-35"><a href="#cb12-35"></a><span class="do">## Grey scale</span></span>
-<span id="cb12-36"><a href="#cb12-36"></a></span>
-<span id="cb12-37"><a href="#cb12-37"></a>Red_green_gs <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-38"><a href="#cb12-38"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-39"><a href="#cb12-39"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-40"><a href="#cb12-40"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
-<span id="cb12-41"><a href="#cb12-41"></a>    <span class="at">low =</span> <span class="fu">to_grey_scale</span>(<span class="st">"red"</span>),</span>
-<span id="cb12-42"><a href="#cb12-42"></a>    <span class="at">mid =</span> <span class="st">"white"</span>,</span>
-<span id="cb12-43"><a href="#cb12-43"></a>    <span class="at">high =</span> <span class="fu">to_grey_scale</span>(<span class="st">"green"</span>), <span class="at">midpoint =</span> <span class="dv">11</span></span>
-<span id="cb12-44"><a href="#cb12-44"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-45"><a href="#cb12-45"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-46"><a href="#cb12-46"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-47"><a href="#cb12-47"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-48"><a href="#cb12-48"></a></span>
-<span id="cb12-49"><a href="#cb12-49"></a><span class="do">## Red/green colorblind</span></span>
-<span id="cb12-50"><a href="#cb12-50"></a></span>
-<span id="cb12-51"><a href="#cb12-51"></a>Red_green_deu <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-52"><a href="#cb12-52"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-53"><a href="#cb12-53"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-54"><a href="#cb12-54"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
-<span id="cb12-55"><a href="#cb12-55"></a>    <span class="at">low =</span> <span class="fu">clr_deutan</span>(<span class="st">"red"</span>),</span>
-<span id="cb12-56"><a href="#cb12-56"></a>    <span class="at">mid =</span> <span class="fu">clr_deutan</span>(<span class="st">"white"</span>),</span>
-<span id="cb12-57"><a href="#cb12-57"></a>    <span class="at">high =</span> <span class="fu">clr_deutan</span>(<span class="st">"green"</span>), <span class="at">midpoint =</span> <span class="dv">11</span></span>
-<span id="cb12-58"><a href="#cb12-58"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-59"><a href="#cb12-59"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-60"><a href="#cb12-60"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-61"><a href="#cb12-61"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-62"><a href="#cb12-62"></a></span>
-<span id="cb12-63"><a href="#cb12-63"></a><span class="co"># Rainbow</span></span>
-<span id="cb12-64"><a href="#cb12-64"></a></span>
-<span id="cb12-65"><a href="#cb12-65"></a>Rainbow1 <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-66"><a href="#cb12-66"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-67"><a href="#cb12-67"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-68"><a href="#cb12-68"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="dv">20</span>)) <span class="sc">+</span></span>
-<span id="cb12-69"><a href="#cb12-69"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-70"><a href="#cb12-70"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-71"><a href="#cb12-71"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-72"><a href="#cb12-72"></a></span>
-<span id="cb12-73"><a href="#cb12-73"></a><span class="do">## grey scale</span></span>
-<span id="cb12-74"><a href="#cb12-74"></a></span>
-<span id="cb12-75"><a href="#cb12-75"></a>Rainbow_gs <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-76"><a href="#cb12-76"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-77"><a href="#cb12-77"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-78"><a href="#cb12-78"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">to_grey_scale</span>()) <span class="sc">+</span></span>
-<span id="cb12-79"><a href="#cb12-79"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-80"><a href="#cb12-80"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-81"><a href="#cb12-81"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-82"><a href="#cb12-82"></a></span>
-<span id="cb12-83"><a href="#cb12-83"></a><span class="do">## Red/green color blind</span></span>
-<span id="cb12-84"><a href="#cb12-84"></a></span>
-<span id="cb12-85"><a href="#cb12-85"></a>Rainbow_deu <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-86"><a href="#cb12-86"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-87"><a href="#cb12-87"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-88"><a href="#cb12-88"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">clr_deutan</span>()) <span class="sc">+</span></span>
-<span id="cb12-89"><a href="#cb12-89"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-90"><a href="#cb12-90"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-91"><a href="#cb12-91"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-92"><a href="#cb12-92"></a></span>
-<span id="cb12-93"><a href="#cb12-93"></a><span class="co"># Viridis</span></span>
-<span id="cb12-94"><a href="#cb12-94"></a></span>
-<span id="cb12-95"><a href="#cb12-95"></a>viridis_optionD <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-96"><a href="#cb12-96"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-97"><a href="#cb12-97"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-98"><a href="#cb12-98"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">viridis</span>(<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb12-99"><a href="#cb12-99"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-100"><a href="#cb12-100"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-101"><a href="#cb12-101"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-102"><a href="#cb12-102"></a></span>
-<span id="cb12-103"><a href="#cb12-103"></a><span class="do">## Grey scale</span></span>
-<span id="cb12-104"><a href="#cb12-104"></a></span>
-<span id="cb12-105"><a href="#cb12-105"></a>viridis_gs <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-106"><a href="#cb12-106"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-107"><a href="#cb12-107"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-108"><a href="#cb12-108"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">to_grey_scale</span>(<span class="fu">viridis</span>(<span class="dv">100</span>))) <span class="sc">+</span></span>
-<span id="cb12-109"><a href="#cb12-109"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-110"><a href="#cb12-110"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-111"><a href="#cb12-111"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-112"><a href="#cb12-112"></a></span>
-<span id="cb12-113"><a href="#cb12-113"></a><span class="do">## Red/green color blind</span></span>
-<span id="cb12-114"><a href="#cb12-114"></a></span>
-<span id="cb12-115"><a href="#cb12-115"></a>viridis_deu <span class="ot">&lt;-</span> abc_1 <span class="sc">%&gt;%</span></span>
-<span id="cb12-116"><a href="#cb12-116"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b)) <span class="sc">+</span></span>
-<span id="cb12-117"><a href="#cb12-117"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> c)) <span class="sc">+</span></span>
-<span id="cb12-118"><a href="#cb12-118"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> <span class="fu">clr_deutan</span>(<span class="fu">viridis</span>(<span class="dv">100</span>))) <span class="sc">+</span></span>
-<span id="cb12-119"><a href="#cb12-119"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb12-120"><a href="#cb12-120"></a>  grid_theme <span class="sc">+</span></span>
-<span id="cb12-121"><a href="#cb12-121"></a>  <span class="fu">coord_fixed</span>()</span>
-<span id="cb12-122"><a href="#cb12-122"></a></span>
-<span id="cb12-123"><a href="#cb12-123"></a><span class="fu">wrap_plots</span>(Red_green, Red_green_gs, Red_green_deu,</span>
-<span id="cb12-124"><a href="#cb12-124"></a>  Rainbow1, Rainbow_gs, Rainbow_deu,</span>
-<span id="cb12-125"><a href="#cb12-125"></a>  viridis_optionD, viridis_gs, viridis_deu,</span>
-<span id="cb12-126"><a href="#cb12-126"></a>  <span class="at">nrow =</span> <span class="dv">3</span>,</span>
-<span id="cb12-127"><a href="#cb12-127"></a>  <span class="at">ncol =</span> <span class="dv">3</span></span>
-<span id="cb12-128"><a href="#cb12-128"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># total = 31983</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>armsData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"arms_supplier_2022.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">mutate</span>(<span class="at">Supplier =</span> <span class="fu">as.factor</span>(Supplier)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">mutate</span>(<span class="at">Percentage =</span> TIV_2022 <span class="sc">/</span> <span class="dv">31983</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a>lollipops <span class="ot">&lt;-</span> armsData[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, ] <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Supplier, Percentage), <span class="at">y =</span> Percentage)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> Supplier, <span class="at">yend =</span> <span class="dv">0</span>), <span class="at">color =</span> <span class="st">"darkgrey"</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">expand =</span> <span class="fu">expand_scale</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> bene_colors[<span class="dv">1</span>]) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  bene_palette_shifted <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"lightgrey"</span>),</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"lightgrey"</span>),</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb13-17"><a href="#cb13-17"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Supplier"</span>, <span class="at">y =</span> <span class="st">"Percentage of arms supplied in 2022"</span>) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb13-20"><a href="#cb13-20"></a></span>
+<span id="cb13-21"><a href="#cb13-21"></a>treemap <span class="ot">&lt;-</span> armsData[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, ] <span class="sc">%&gt;%</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">area =</span> Percentage, <span class="at">fill =</span> Supplier, <span class="at">label =</span> Supplier)) <span class="sc">+</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a>  <span class="fu">geom_treemap</span>(<span class="at">start =</span> <span class="st">"topleft"</span>) <span class="sc">+</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a>  <span class="fu">geom_treemap_text</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">place =</span> <span class="st">"centre"</span>, <span class="at">reflow =</span> <span class="cn">TRUE</span>, <span class="at">start =</span> <span class="st">"topleft"</span>) <span class="sc">+</span></span>
+<span id="cb13-25"><a href="#cb13-25"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(bene_colors, <span class="dv">20</span>))</span>
+<span id="cb13-26"><a href="#cb13-26"></a></span>
+<span id="cb13-27"><a href="#cb13-27"></a>lollipops <span class="sc">+</span> treemap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="index_files/figure-revealjs/fig-redgreen-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;12: Heatmaps with different color scales simulated in black/white and deuteranopia</p></section>
+<img data-src="index_files/figure-revealjs/fig-barplotalternatives-1.svg" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;13: Alternatives to bar plots: Lollipot Plot and Treemap</p></section>
 <section id="r-packages-used" class="slide level2 smaller">
 <h2>R Packages Used</h2>
 <div class="cell">
@@ -1142,15 +1228,23 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <td style="text-align: right;">2.21</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">styler <span class="citation" data-cites="styler"><a href="#/references" role="doc-biblioref" onclick="">[19]</a></span></td>
-<td style="text-align: right;">1.9.1</td>
+<td style="text-align: left;">scales <span class="citation" data-cites="scales"><a href="#/references" role="doc-biblioref" onclick="">[19]</a></span></td>
+<td style="text-align: right;">1.2.1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">tidyverse <span class="citation" data-cites="tidyverse"><a href="#/references" role="doc-biblioref" onclick="">[20]</a></span></td>
-<td style="text-align: right;">2.0.0</td>
+<td style="text-align: left;">styler <span class="citation" data-cites="styler"><a href="#/references" role="doc-biblioref" onclick="">[20]</a></span></td>
+<td style="text-align: right;">1.9.1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">viridis <span class="citation" data-cites="viridis"><a href="#/references" role="doc-biblioref" onclick="">[21]</a></span></td>
+<td style="text-align: left;">tidyverse <span class="citation" data-cites="tidyverse"><a href="#/references" role="doc-biblioref" onclick="">[21]</a></span></td>
+<td style="text-align: right;">2.0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treemapify <span class="citation" data-cites="treemapify"><a href="#/references" role="doc-biblioref" onclick="">[22]</a></span></td>
+<td style="text-align: right;">2.5.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">viridis <span class="citation" data-cites="viridis"><a href="#/references" role="doc-biblioref" onclick="">[23]</a></span></td>
 <td style="text-align: right;">0.6.2</td>
 </tr>
 </tbody>
@@ -1165,7 +1259,7 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">C. Li, <span>“Friends <span>Don</span>’t <span>Let Friends Make Bad Graphs</span>.”</span> <span>Zenodo</span>, Jan. 16, 2023. doi: <a href="https://doi.org/10.5281/ZENODO.7542491">10.5281/ZENODO.7542491</a>.</div>
 </div>
 <div id="ref-Holtz" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Y. Holtz, <span>“The issue with pie chart.”</span> <a href="https://www.data-to-viz.com/caveat/www.data-to-viz.com/caveat/pie.html">https://www.data-to-viz.com/caveat/www.data-to-viz.com/caveat/pie.html</a> (accessed Apr. 18, 2023).</div>
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Y. Holtz, <span>“The issue with pie chart.”</span> <a href="https://www.data-to-viz.com/caveat/pie.html">https://www.data-to-viz.com/caveat/pie.html</a> (accessed Apr. 18, 2023).</div>
 </div>
 <div id="ref-Siirtola2019" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[3] </div><div class="csl-right-inline">H. Siirtola, <span>“The <span>Cost</span> of <span>Pie Charts</span>,”</span> in <em>2019 23rd <span>International Conference Information Visualisation</span> (<span>IV</span>)</em>, Jul. 2019, pp. 151–156. doi: <a href="https://doi.org/10.1109/IV.2019.00034">10.1109/IV.2019.00034</a>.</div>
@@ -1215,14 +1309,20 @@ Benedikt Schnur <a href="https://orcid.org/0000-0002-1977-7878" class="quarto-ti
 <div id="ref-rmarkdown2023" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[18] </div><div class="csl-right-inline">J. Allaire <em>et al.</em>, <em><span class="nocase">rmarkdown</span>: Dynamic documents for r</em>. 2023. Available: <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a></div>
 </div>
+<div id="ref-scales" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">H. Wickham and D. Seidel, <em><span class="nocase">scales</span>: Scale functions for visualization</em>. 2022. Available: <a href="https://CRAN.R-project.org/package=scales">https://CRAN.R-project.org/package=scales</a></div>
+</div>
 <div id="ref-styler" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">K. Müller and L. Walthert, <em><span class="nocase">styler</span>: Non-invasive pretty printing of r code</em>. 2023. Available: <a href="https://CRAN.R-project.org/package=styler">https://CRAN.R-project.org/package=styler</a></div>
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">K. Müller and L. Walthert, <em><span class="nocase">styler</span>: Non-invasive pretty printing of r code</em>. 2023. Available: <a href="https://CRAN.R-project.org/package=styler">https://CRAN.R-project.org/package=styler</a></div>
 </div>
 <div id="ref-tidyverse" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[20] </div><div class="csl-right-inline">H. Wickham <em>et al.</em>, <span>“Welcome to the <span class="nocase">tidyverse</span>,”</span> <em>Journal of Open Source Software</em>, vol. 4, no. 43, p. 1686, 2019, doi: <a href="https://doi.org/10.21105/joss.01686">10.21105/joss.01686</a>.</div>
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">H. Wickham <em>et al.</em>, <span>“Welcome to the <span class="nocase">tidyverse</span>,”</span> <em>Journal of Open Source Software</em>, vol. 4, no. 43, p. 1686, 2019, doi: <a href="https://doi.org/10.21105/joss.01686">10.21105/joss.01686</a>.</div>
+</div>
+<div id="ref-treemapify" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">D. Wilkins, <em><span class="nocase">treemapify</span>: Draw treemaps in <span>“<span class="nocase">ggplot2</span>”</span></em>. 2021. Available: <a href="https://CRAN.R-project.org/package=treemapify">https://CRAN.R-project.org/package=treemapify</a></div>
 </div>
 <div id="ref-viridis" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[21] </div><div class="csl-right-inline">Garnier <em>et al.</em>, <em><span class="nocase">viridis</span> - colorblind-friendly color maps for r</em>. 2021. doi: <a href="https://doi.org/10.5281/zenodo.4679424">10.5281/zenodo.4679424</a>.</div>
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">Garnier <em>et al.</em>, <em><span class="nocase">viridis</span> - colorblind-friendly color maps for r</em>. 2021. doi: <a href="https://doi.org/10.5281/zenodo.4679424">10.5281/zenodo.4679424</a>.</div>
 </div>
 </div>
 
