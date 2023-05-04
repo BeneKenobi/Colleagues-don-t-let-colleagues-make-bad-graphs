@@ -190,8 +190,8 @@ a + b + c + d + e + f + plot_layout(design = layout) + patchwork_defauts
 ```{r}
 #| echo: true
 #| code-fold: true
-#| label: fig-meansseperationbar
-#| fig-cap: "Means seperation bar plot"
+#| label: fig-meansseparationbar
+#| fig-cap: "Means separation bar plot"
 #| warning: false
 
 bene_palette_shifted <- scale_fill_manual(values = bene_colors[-1], breaks = waiver())
@@ -255,8 +255,8 @@ bar
 ```{r}
 #| echo: true
 #| code-fold: true
-#| label: fig-meansseperationall
-#| fig-cap: "Means seperation alternatives: box plot and beeswarm plot"
+#| label: fig-meansseparationall
+#| fig-cap: "Means separation alternatives: box plot and beeswarm plot"
 #| warning: false
 
 box <- groups_long %>%
@@ -418,7 +418,7 @@ violin_eg + box_eg + jitter_eg
 #| echo: true
 #| code-fold: true
 #| label: fig-barmeadows
-#| fig-cap: "Bar plot for multi-factor data [@Sheesley]"
+#| fig-cap: "Bar plot for multifactorial data [@Sheesley]"
 #| warning: false
 sheesleyData <- read.csv("sheesley.csv") %>% 
   mutate(Weld = as.factor(Weld),
@@ -458,7 +458,7 @@ barmeadows
 #| echo: true
 #| code-fold: true
 #| label: fig-barmeadowsfixed
-#| fig-cap: "Multi-factorial data as boxplot facet"
+#| fig-cap: "Multifactorial data as boxplot facet"
 #| warning: false
 
 Machine.labs <- c("Machine 1", "Machine 2")
@@ -626,7 +626,7 @@ wrap_plots(Red_green, Red_green_gs, Red_green_deu,
 - Red–green colorblindness: 8% males, 0.5% females (Northern European descent)
 :::
 
-## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Checking Outliers
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Adjusting for Outliers
 
 ```{r}
 #| echo: true
