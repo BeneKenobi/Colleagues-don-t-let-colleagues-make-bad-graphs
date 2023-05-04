@@ -5,7 +5,8 @@ title: "Colleagues Don’t Let Colleagues Make Bad Graphs"
 ##
 
 ::: {.center .center-y layout-valign="bottom"}
-Presentation based on
+
+**Presentation based on**
 
 *Friends Don't Let Friends Make Bad Graphs* [@Li2023]
 
@@ -25,6 +26,7 @@ library(patchwork)
 library(ggbeeswarm)
 library(grateful)
 library(prismatic)
+library(treemapify)
 
 bene_colors <- c(
     "#47476b",
@@ -78,7 +80,7 @@ plot_pie <- function(data) {
     ggplot(data, aes(x = "name", y = value, fill = name)) +
         geom_bar(width = 1, stat = "identity") +
         coord_polar("y", start = 0, direction = -1) +
-        bene_palette +
+        bene_palette_shifted +
         geom_text(aes(label = name), position = position_stack(vjust = 0.5), color = "white") +
         xlab("") +
         ylab("")
@@ -90,7 +92,9 @@ c <- plot_pie(data3)
 a + b + c + patchwork_defauts
 ```
 ::: {.notes}
-Length is easier to estimate than angle, and the estimation of area is even worse.
+- Areas are hard to estimate
+- Angles are even harder to estimate
+- Lengths are easiest to estimate
 :::
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
@@ -116,8 +120,8 @@ data3 <- data3 %>%
 data_combined <- rbind(data1, data2, data3)
 
 g <- ggplot(data_combined, aes(x = rev(type), y = value, fill = name)) +
-    geom_bar(position = position_fill(reverse = TRUE), stat = "identity", width = 0.25) +
-    bene_palette +
+    geom_bar(position = position_fill(reverse = TRUE), stat = "identity", width = 0.25, color = "black") +
+    bene_palette_shifted +
     theme(
         legend.position = "none",
         panel.grid = element_blank(),
@@ -139,6 +143,9 @@ CD
 
 a + b + c + g + plot_layout(design = layout) + patchwork_defauts
 ```
+::: {.notes}
+- Areas are still hard to estimate and compare
+:::
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Pie Charts
 
@@ -153,8 +160,8 @@ a + b + c + g + plot_layout(design = layout) + patchwork_defauts
 
 plot_bar <- function(data) {
     ggplot(data, aes(x = name, y = value, fill = name)) +
-        geom_bar(stat = "identity") +
-        bene_palette +
+        geom_bar(stat = "identity", color = "black") +
+        bene_palette_shifted +
         geom_text(aes(label = name), position = position_stack(reverse = TRUE), vjust = 1.5, color = "white") +
         ylim(0, 25) +
         xlab("") +
@@ -312,6 +319,12 @@ beeswarm <- groups_long %>%
 bar + box + beeswarm + patchwork_defauts
 ```
 
+::: {.notes}
+- Box Plots show the median and the interquartile range (IQR) of the data
+  - Whiskers are min and max OR 1.5 * IQR
+  - Points are outliers
+:::
+
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader} Violin Plots for Small Sample Sizes
 
 ```{r}
@@ -465,7 +478,6 @@ dotsformultifactor <- sheesleyData %>%
   theme(
     text = element_text(color = "black"),
     axis.text = element_text(color = "black"),
-    legend.position = "none",
     strip.text.x = element_text(color = "black"),
     strip.background = element_blank(),
     strip.placement = "outside",
@@ -473,101 +485,6 @@ dotsformultifactor <- sheesleyData %>%
 
 dotsformultifactor
 ```
-
-## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Checking Outliers
-
-```{r}
-#| echo: true
-#| code-fold: true
-#| label: fig-heatsandoutliers
-#| fig-cap: "Heatmaps with outliers"
-#| warning: false
-set.seed(2363)
-
-group1 <- rnorm(mean = 1, sd = 0.2, n = 8)
-group2 <- rnorm(mean = 0, sd = 0.2, n = 12)
-
-group3 <- rnorm(mean = 0, sd = 0.2, n = 8)
-group4 <- rnorm(mean = 1, sd = 0.2, n = 10)
-
-group5 <- rnorm(mean = 10, sd = 1, n = 2)
-
-toydata <- data.frame(
-  observation1 = c(group1, group2),
-  observation2 = c(group3, group4, group5)
-  ) %>% 
-  mutate(feature = 1:20) %>% 
-  pivot_longer(cols = !feature, names_to = "observation", values_to = "value") %>% 
-  mutate(observation2 = str_remove(observation, "observation"))
-
-p1 <- toydata %>% 
-  mutate(observation2 = fct_rev(observation2)) %>% 
-  ggplot(aes(x = observation2, y = feature)) +
-  geom_tile(aes(fill = value)) +
-  scale_fill_gradientn(colors = viridis(n = 10)) +
-  labs(x = "Observations",
-       y = "Features") +
-  theme_classic() +
-  coord_flip()
-
-p2 <- toydata %>% 
-  mutate(observation2 = fct_rev(observation2)) %>%
-  mutate(rank = rank(value, ties.method = "first")) %>% 
-  ggplot(aes(x = value, y = rank)) +
-  geom_point(shape = 21, color = "black", 
-             aes(fill = value), size = 3) +
-  scale_fill_gradientn(colors = viridis(n = 10)) +
-  theme_classic() +
-  theme(
-    legend.position = "none",
-  )
-
-p3 <- toydata %>% 
-  mutate(observation2 = fct_rev(observation2)) %>%
-  mutate(rank = rank(value, ties.method = "first")) %>% 
-  mutate(value2 = case_when(
-    value >= 2 ~ 2,
-    T ~ value
-  )) %>% 
-  ggplot(aes(x = value, y = rank)) +
-  geom_point(shape = 21, color = "black", 
-             aes(fill = value2), size = 3) +
-  scale_fill_gradientn(colors = viridis(n = 10),
-                       breaks = c(0, 1, 2),
-                       labels = c("0", "1", ">2")
-                       ) +
-  labs(fill = "value") +
-  theme_classic() +
-  theme(
-    legend.position = "none",
-  )
-
-p4 <- toydata %>% 
-  mutate(observation2 = fct_rev(observation2)) %>% 
-  mutate(value2 = case_when(
-    value >= 1.5 ~ 2,
-    T ~ value
-  )) %>% 
-  ggplot(aes(x = observation2, y = feature)) +
-  geom_tile(aes(fill = value2)) +
-  scale_fill_gradientn(colors = viridis(n = 10),
-                       breaks = c(0, 1, 2),
-                       labels = c("0", "1", ">2")
-                       ) +
-  labs(x = "Observations",
-       y = "Features",
-       fill = "value") +
-  theme_classic() +
-  coord_flip()
-
-wrap_plots(p1, p2, p4, p3, 
-           nrow = 2, ncol = 2, 
-           widths = c(1, 0.7))
-```
-
-::: {.notes}
-95% quantile = 1.723745
-:::
 
 ## [Colleagues Don't Let Colleagues Make]{.smallHeader}[Plots with Red/Green or Rainbow color scales]{.notThatSmallHeader}
 
@@ -704,6 +621,140 @@ wrap_plots(Red_green, Red_green_gs, Red_green_deu,
   nrow = 3, 
   ncol = 3
 )
+```
+::: {.notes}
+- Red–green colorblindness: 8% males, 0.5% females (Northern European descent)
+:::
+
+## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Checking Outliers
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-heatsandoutliers
+#| fig-cap: "Heatmaps with outliers"
+#| warning: false
+set.seed(2363)
+
+group1 <- rnorm(mean = 1, sd = 0.2, n = 8)
+group2 <- rnorm(mean = 0, sd = 0.2, n = 12)
+group3 <- rnorm(mean = 0, sd = 0.2, n = 8)
+group4 <- rnorm(mean = 1, sd = 0.2, n = 10)
+group5 <- rnorm(mean = 10, sd = 1, n = 2)
+
+toydata <- data.frame(
+  observation1 = c(group1, group2),
+  observation2 = c(group3, group4, group5)
+  ) %>% 
+  mutate(feature = 1:20) %>% 
+  pivot_longer(cols = !feature, names_to = "observation", values_to = "value") %>% 
+  mutate(observation2 = str_remove(observation, "observation"))
+
+p1 <- toydata %>% 
+  mutate(observation2 = fct_rev(observation2)) %>% 
+  ggplot(aes(x = observation2, y = feature)) +
+  geom_tile(aes(fill = value)) +
+  scale_fill_gradientn(colors = viridis(n = 10)) +
+  labs(x = "Observations",
+       y = "Features") +
+  theme_classic() +
+  coord_flip()
+
+p2 <- toydata %>% 
+  mutate(observation2 = fct_rev(observation2)) %>%
+  mutate(rank = rank(value, ties.method = "first")) %>% 
+  ggplot(aes(x = value, y = rank)) +
+  geom_point(shape = 21, color = "black", 
+             aes(fill = value), size = 3) +
+  scale_fill_gradientn(colors = viridis(n = 10)) +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+  )
+
+p3 <- toydata %>% 
+  mutate(observation2 = fct_rev(observation2)) %>%
+  mutate(rank = rank(value, ties.method = "first")) %>% 
+  mutate(value2 = case_when(
+    value >= 2 ~ 2,
+    T ~ value
+  )) %>% 
+  ggplot(aes(x = value, y = rank)) +
+  geom_point(shape = 21, color = "black", 
+             aes(fill = value2), size = 3) +
+  scale_fill_gradientn(colors = viridis(n = 10),
+                       breaks = c(0, 1, 2),
+                       labels = c("0", "1", ">2")
+                       ) +
+  labs(fill = "value") +
+  theme_classic() +
+  theme(
+    legend.position = "none",
+  )
+
+p4 <- toydata %>% 
+  mutate(observation2 = fct_rev(observation2)) %>% 
+  mutate(value2 = case_when(
+    value >= 1.5 ~ 2,
+    T ~ value
+  )) %>% 
+  ggplot(aes(x = observation2, y = feature)) +
+  geom_tile(aes(fill = value2)) +
+  scale_fill_gradientn(colors = viridis(n = 10),
+                       breaks = c(0, 1, 2),
+                       labels = c("0", "1", ">2")
+                       ) +
+  labs(x = "Observations",
+       y = "Features",
+       fill = "value") +
+  theme_classic() +
+  coord_flip()
+
+wrap_plots(p1, p2, p4, p3, 
+           nrow = 2, ncol = 2, 
+           widths = c(1, 0.7))
+```
+
+::: {.notes}
+95% quantile = 1.723745
+:::
+
+## Bonus: Bar Plot Alternatives
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| label: fig-barplotalternatives
+#| fig-cap: "Alternatives to bar plots: Lollipot Plot and Treemap"
+#| warning: false
+
+# total = 31983
+armsData <- read.csv("arms_supplier_2022.csv") %>%
+  mutate(Supplier = as.factor(Supplier)) %>%
+  mutate(Percentage = TIV_2022/31983)
+
+lollipops <- armsData[1:20, ] %>%
+  ggplot(aes(x = reorder(Supplier, Percentage), y = Percentage)) +
+  geom_segment(aes(xend = Supplier, yend = 0), color = "darkgrey") +
+  scale_y_continuous(labels=scales::percent, expand = expand_scale(mult = c(0, 0.1))) +
+  geom_point(size = 4, color=bene_colors[1]) +
+  bene_palette_shifted +
+  theme_classic() +
+  theme(
+    panel.grid.major.x = element_line(color = "lightgrey"),
+    panel.grid.minor.x = element_line(color = "lightgrey"),
+    axis.title.y = element_blank()
+  ) +
+  labs(x = "Supplier", y = "Percentage of arms supplied in 2022") +
+  coord_flip()
+
+treemap <- armsData[1:20, ] %>% 
+  ggplot(aes(area = Percentage, fill = Supplier, label = Supplier)) +
+  geom_treemap(start = "topleft") +
+  geom_treemap_text(color = "white", place = "centre", reflow = TRUE, start = "topleft") +
+  scale_fill_manual(values = rep(bene_colors, 20))
+
+lollipops + treemap
 ```
 
 ## R Packages Used {.smaller}
