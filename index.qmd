@@ -632,7 +632,7 @@ wrap_plots(Red_green, Red_green_gs, Red_green_deu,
 - Red–green colorblindness: 8% males, 0.5% females (Northern European descent)
 :::
 
-## [Colleagues Don't Let Colleagues Make]{.smallHeader} Heatmaps without Adjusting for Outliers
+## [Colleagues Don't Let Colleagues Make]{.smallHeader}[Heatmaps without Adjusting for Outliers]{.notThatSmallHeader}
 
 ```{r}
 #| echo: true
@@ -742,7 +742,7 @@ wrap_plots(p1, p2, p4, p3,
 #| echo: true
 #| code-fold: true
 #| label: fig-barplotalternatives
-#| fig-cap: "Alternatives to bar plots: lollipop Plot and treemap"
+#| fig-cap: "Alternatives to bar plots: lollipop plot and treemap"
 #| warning: false
 
 # total = 31983
