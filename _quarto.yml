@@ -25,6 +25,10 @@ format:
     fig-format: svg
     link-external-newwindow: True
     logo: images/MHH_Logo.svg
+    controls: true
+    controls-layout: edges
+    controls-tutorial: true
+    controls-back-arrows: faded
 
 knitr:
   opts_chunk:
