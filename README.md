@@ -1,6 +1,6 @@
 # Colleagues Don’t Let Colleagues Make Bad Graphs
 
-[![DOI](https://zenodo.org/badge/628994575.svg)](https://zenodo.org/badge/latestdoi/628994575)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7896007.svg)](https://doi.org/10.5281/zenodo.7896007)
 
 A presentation about certain types of data visualization - What are they and why are they bad.
 
